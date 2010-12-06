@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer 
+		 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" height="100%" borderVisible="false"
+		
+		 xmlns:LoginScreen="com.captionmashup.modules.album.facebook.view.components.LoginScreen.*" 
+		 xmlns:StartupScreen="com.captionmashup.modules.album.facebook.view.components.StartupScreen.*" 
+		 xmlns:AlbumBrowser="com.captionmashup.modules.album.facebook.view.components.AlbumBrowser.*"
+		 >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<AlbumBrowser:AlbumBrowser id="albumBrowser">
+	</AlbumBrowser:AlbumBrowser>
+	
+	<StartupScreen:StartupScreen id="startupScreen">
+	</StartupScreen:StartupScreen>
+	
+	<LoginScreen:LoginScreen id="loginScreen">
+	</LoginScreen:LoginScreen>
+	
+</s:BorderContainer>

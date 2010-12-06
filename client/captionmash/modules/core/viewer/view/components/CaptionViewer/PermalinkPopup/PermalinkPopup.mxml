@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="200" dropShadowVisible="true" cornerRadius="20" borderWeight="0">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public static const CLOSE:String    = 'close';
+			
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	<s:Label text="Direct link to this Caption:" fontSize="18">
+	</s:Label>
+	<s:TextInput id="urlField" width="90%">
+	</s:TextInput>
+	
+	<s:Button label="Close" click="{sendEvent(CLOSE)}">
+	</s:Button>
+</s:BorderContainer>

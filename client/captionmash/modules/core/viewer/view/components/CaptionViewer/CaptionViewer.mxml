@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" 
+				   width="100%" 
+				   height="100%" 
+				   creationPolicy="all" 
+				   xmlns:CaptionCanvas="com.captionmashup.common.view.component.CaptionCanvas.*" 
+				   xmlns:ViewOverlay="com.captionmashup.modules.core.viewer.view.components.CaptionViewer.ViewOverlay.*" 
+				   xmlns:CaptionViewer="com.captionmashup.modules.core.viewer.view.components.CaptionViewer.*" 
+				    cornerRadius="20" dropShadowVisible="true">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+	<!-- Empty container that is used for mediator and popup binding-->
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.captionmashup.common.CommonConstants;
+			
+			private function init():void{
+				var rect:Rectangle = new Rectangle(0,0,
+					CommonConstants.CAPTION_CANVAS_WIDTH,CommonConstants.CAPTION_CANVAS_HEIGHT);
+				this.scrollRect = rect;
+				//canvas.setCanvasScrollRect(rect);
+			}
+		]]>
+	</fx:Script>
+	<s:Group>
+		
+		<CaptionCanvas:CaptionCanvas id="canvas">	
+		</CaptionCanvas:CaptionCanvas>
+		
+		<ViewOverlay:ViewOverlay id="overlay">
+		</ViewOverlay:ViewOverlay>
+		
+		<CaptionViewer:SingleCaptionOverlay id="singleCaptionOverlay" visible="false">
+		</CaptionViewer:SingleCaptionOverlay>
+		
+	</s:Group>
+	
+	
+	
+</s:BorderContainer>

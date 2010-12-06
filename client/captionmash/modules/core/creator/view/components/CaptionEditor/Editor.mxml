@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" 
+		 height="100%" 
+		 creationPolicy="all" 
+		 xmlns:CaptionCanvas="com.captionmashup.common.view.component.CaptionCanvas.*" 
+		 xmlns:CaptionEditor="com.captionmashup.modules.core.creator.view.components.CaptionEditor.*" 
+		 xmlns:EditorControls="com.captionmashup.modules.core.creator.view.components.CaptionEditor.EditorControls.*" 
+		 xmlns:EmptyScreen="com.captionmashup.modules.core.creator.view.components.CaptionEditor.EmptyScreen.*"
+		 >
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="left" verticalAlign="middle"/>
+	</s:layout>
+
+	<!-- Empty container that is used for mediator and popup binding-->
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<EditorControls:EditorControls id="editorControls">
+	</EditorControls:EditorControls>
+	
+	<s:Group>
+
+		<CaptionCanvas:CaptionCanvas id="canvas">
+		</CaptionCanvas:CaptionCanvas>
+		
+		<CaptionEditor:EditOverlay id="overlay">
+		</CaptionEditor:EditOverlay>	
+	</s:Group>
+</s:BorderContainer>

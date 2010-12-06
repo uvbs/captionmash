@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="400" height="300" 
+		 xmlns:Container="com.captionmashup.common.view.component.CaptionCanvas.Container.*"
+		 creationPolicy="all"
+		 title="CONFIRM PHOTO DELETION">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public static const CONFIRM_PHOTO_DELETE:String = "confirm_photo_delete";
+			public static const CANCEL_PHOTO_DELETE:String	= "cancel_photo_delete";
+			
+			public function sendEvent(name:String):void{
+				dispatchEvent(new Event(name,true));
+			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	
+	<Container:ImageContainer id="imageContainer">
+	</Container:ImageContainer>
+	
+	<s:Label text="You really want to delete this photo?">
+	</s:Label>
+	
+	<s:HGroup paddingBottom="10">
+		<s:Button label="Yes" click="sendEvent(CONFIRM_PHOTO_DELETE)"/>
+		<s:Button label="No" click="sendEvent(CANCEL_PHOTO_DELETE)"/>
+	</s:HGroup>
+</s:Panel>

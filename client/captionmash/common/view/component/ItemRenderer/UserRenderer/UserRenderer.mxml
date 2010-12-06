@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				width="100%" height="100%"
+				xmlns:Container="com.captionmashup.common.view.component.CaptionCanvas.Container.*" 
+				xmlns:UserRenderer="com.captionmashup.common.view.component.ItemRenderer.UserRenderer.*" 
+				>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+	</s:states>
+	
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	<s:Group width="100%" height="100%">
+		<s:VGroup width="100%" height="100%" horizontalAlign="center">
+			<Container:ImageContainer id="imageContainer" imagePath="{data.thumb_path}">
+			</Container:ImageContainer>
+			<s:Label text="{data.nickname}" fontSize="20">
+			</s:Label>	
+		</s:VGroup>
+		
+		<UserRenderer:UserRendererOverlay id="userOverlay" includeIn="hovered">
+		</UserRenderer:UserRendererOverlay>
+	</s:Group>	
+	<!-- Data is PhotoDTO-->
+	
+</s:ItemRenderer>

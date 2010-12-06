@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%"
+		 height="100%" 
+		 xmlns:spinner="effects.spinner.*"
+		 >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.utils.Base64Decoder;
+			
+			public static const SELECT:String = 'select';
+			public static const DESELECT:String = 'deselect';
+			public static const IMAGE_LOADED:String = "image_loaded";
+			
+			[Bindable]public var imagePath:String = "";
+			
+			
+			protected function onImageComplete( e:Event ):void
+			{
+				var image:Image = e.target as Image;
+				
+				var ratio:Number = Math.min( image.maxWidth/image.contentWidth, image.maxHeight/image.contentHeight );
+				
+				ratio = ratio > 1 ? 1 : ratio;
+				
+				image.width = ratio * image.contentWidth;
+				image.height = ratio * image.contentHeight;
+				
+				spinner.visible = false;
+								
+				sendEvent(IMAGE_LOADED);
+			}
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Group height="100%" width="100%" >
+		<spinner:ProgressSpinner id="spinner" 
+								 size="{Math.min(imageFrame.width,imageFrame.height)/2}"
+								 x="{(imageFrame.width-spinner.size)/2}"
+								 y="{(imageFrame.height-spinner.size)/2}"
+								 visible="true" numTicks="15"
+								 tickWidth="{spinner.size/10}" >
+		</spinner:ProgressSpinner> 	
+	
+		<s:VGroup id="imageFrame" height="100%" width="100%" 
+				  horizontalAlign="center" verticalAlign="middle">
+			<mx:Image  id="image" source="{imagePath}"
+					  maintainAspectRatio="true"
+					  maxHeight="{imageFrame.height}"
+					  maxWidth="{imageFrame.width}"
+					  complete="onImageComplete(event)">		
+			</mx:Image>
+		</s:VGroup>
+	</s:Group>
+</s:Group>

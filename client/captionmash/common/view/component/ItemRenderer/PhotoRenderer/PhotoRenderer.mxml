@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				width="100%" height="100%"
+				xmlns:Container="com.captionmashup.common.view.component.CaptionCanvas.Container.*" 
+				xmlns:PhotoRenderer="com.captionmashup.common.view.component.ItemRenderer.PhotoRenderer.*"
+				toolTip="{'Page '+data.page_no}">
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+	</s:states>
+	
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	<s:Group width="100%" height="100%">
+		<Container:ImageContainer id="imageContainer" imagePath="{data.thumb_path}">
+		</Container:ImageContainer>
+		
+		<PhotoRenderer:PhotoRendererOverlay id="photoRendererOverlay" includeIn="hovered">
+		</PhotoRenderer:PhotoRendererOverlay>
+	</s:Group>	
+	<!-- Data is PhotoDTO-->
+</s:ItemRenderer>

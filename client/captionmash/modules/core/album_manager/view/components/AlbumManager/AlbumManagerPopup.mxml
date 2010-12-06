@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="700" height="550" 
+			   xmlns:SparkThumbnailTileList="com.captionmashup.common.view.component.SparkThumbnailTileList.*"
+			   creationPolicy="all" 
+			   xmlns:ns="com.captionmashup.modules.core.album_manager.view.components.AlbumManager.*"
+			   title="My Albums">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<s:layout>
+		<s:HorizontalLayout>
+		</s:HorizontalLayout>
+	</s:layout>
+	
+	<s:HGroup height="100%" width="100%">
+		<ns:AlbumControlSideBar id="albumControlSideBar">		
+		</ns:AlbumControlSideBar>
+		<s:VGroup horizontalAlign="center" width="100%" height="100%" paddingRight="10" paddingBottom="10">
+			<s:Label text="ALBUMS" paddingTop="5">
+			</s:Label>
+			<SparkThumbnailTileList:SparkThumbnailTileList id="albumBrowser" height="30%">
+			</SparkThumbnailTileList:SparkThumbnailTileList>
+			<s:Label text="PHOTOS" paddingTop="5">
+			</s:Label>
+			<SparkThumbnailTileList:SparkThumbnailTileList id="photoBrowser" height="60%">
+			</SparkThumbnailTileList:SparkThumbnailTileList>
+		</s:VGroup>
+	</s:HGroup>
+</s:TitleWindow>

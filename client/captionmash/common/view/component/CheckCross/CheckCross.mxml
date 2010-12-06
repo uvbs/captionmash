@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:spinner="effects.spinner.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			public function set valid(value:Boolean):void{
+				checkImage.visible = value;
+				crossImage.visible = !value;
+				progressSpinner.visible = false;
+			}
+			
+			public function animatePending():void{
+				this.visible = true;
+				progressSpinner.visible = true;
+				checkImage.visible = false;
+				crossImage.visible = false;
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:Image 	id="checkImage"
+				source="@Embed(source='assets/image/check.png')"
+				width="100%" height="100%" 
+				visible="false">		
+	</mx:Image>
+	
+	<mx:Image	id="crossImage"
+				source="@Embed(source='assets/image/cross.png')"
+				width="100%"
+				height="100%"
+				visible="true">
+	</mx:Image>
+	
+	<spinner:ProgressSpinner id="progressSpinner" size="{this.height}" visible="false">
+	</spinner:ProgressSpinner>
+</s:Group>

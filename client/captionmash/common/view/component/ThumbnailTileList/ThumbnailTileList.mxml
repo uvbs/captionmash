@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" 
+				 width="100%" height="100%" 
+				 creationPolicy="all" 
+				 borderVisible="false"
+				 xmlns:Paginator="com.captionmashup.common.view.component.Paginator.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Bindable]	private var ROW_COUNT:int = 4;
+			[Bindable]	private var COLUMN_COUNT:int = 4;
+			
+			
+			public function setSize(rowCount:int, columnCount:int):void{
+				this.ROW_COUNT = rowCount;
+				this.COLUMN_COUNT= columnCount;
+				
+			}
+			
+			private function sendEvent(eventName:String):void{
+				dispatchEvent(new Event(eventName, true));
+			}
+
+
+		]]>
+	</fx:Script>
+	
+	<s:VGroup height="100%" width="100%" id="vBox">	
+		<mx:TileList id="tileList"
+					 width="100%" height="90%"
+					 rowCount="{ROW_COUNT}"
+					 columnCount="{COLUMN_COUNT}"
+					 >
+					
+		</mx:TileList>
+		
+		<s:HGroup width="100%" 
+				  height="10%"
+				  horizontalAlign="center"
+				  verticalAlign="middle"
+				  id="bottomHBox">
+			
+			<Paginator:Paginator_Component id="paginator">	
+			</Paginator:Paginator_Component>
+			
+		</s:HGroup>		
+	</s:VGroup>
+</s:BorderContainer>

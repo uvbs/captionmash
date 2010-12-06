@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="600" height="500" 
+			   xmlns:DebugPanel="com.captionmashup.modules.core.debug.view.components.DebugPanel.*"
+			   close="{sendEvent(CLOSE_DEBUG_PANEL)}"
+			   creationPolicy="all">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			public static const LOGIN:String			= 	"debug/login";
+			public static const LOGOUT:String			= 	"debug/logout";
+			public static const REGISTER:String			= 	"debug/register";
+			public static const GET_USER:String			= 	"debug/get_user";
+			
+			public static const LATEST_CAPTIONS:String	= 	"debug/latest_captions";
+			public static const START_CREATION:String	= 	"debug/start_creation";
+			public static const TOGGLE_BASKET:String	= 	"debug/toggle_basket";
+			
+			public static const USER_ALBUMS:String		= 	"debug/user_albums";
+			public static const LIST_GENRES:String		= 	"debug/list_genres";
+			public static const LIST_ALBUMS:String		= 	"debug/list_albums";
+			
+			
+			
+			public static const UPLOAD_PHOTO:String		= 	"debug/upload_photo";
+			public static const TEST_PIPES:String		= 	"debug/test_pipes";
+			public static const CLOSE_DEBUG_PANEL:String		= 	"debug/close_debug_panel";
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+			
+		]]>
+	</fx:Script>
+	<s:ButtonBar dataProvider="{debugStack}">
+	</s:ButtonBar>
+	<mx:ViewStack x="0" y="40" id="debugStack" width="100%" height="20%">
+		<s:NavigatorContent label="Login" width="100%" height="100%">
+			<s:Button label="Register" x="10" y="10" click="{sendEvent(REGISTER)}"/>
+			<s:Button x="10" y="39" label="Login" click="{sendEvent(LOGIN)}"/>
+			<s:Button x="91" y="38" label="Get user" click="{sendEvent(GET_USER)}"/>
+			<s:Button x="90" y="9" label="Logout" click="{sendEvent(LOGOUT)}"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Captions" width="100%" height="100%">
+			<s:Button x="10" y="10" label="Latest captions" click="{sendEvent(LATEST_CAPTIONS)}"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Photos" width="100%" height="100%">
+			<s:Button x="10" y="10" label="Start Creation" click="{sendEvent(START_CREATION)}"/>
+			<s:Button x="10" y="48" label="User albums" click="{sendEvent(USER_ALBUMS)}"/>
+			<s:Button label="Toggle Basket" x="318" y="48" click="{sendEvent(TOGGLE_BASKET)}"/>
+			<s:Button label="Upload photo" x="120" y="48" click="{sendEvent(UPLOAD_PHOTO)}"/>
+			<s:Button x="227" y="10" label="List Genres"/>
+			<s:Button x="226" y="48" label="List Albums"/>
+			<s:Button x="322" y="10" label="List Photos"/>
+			<s:TextInput id="creatorData" x="117" y="10" width="94" text=""/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Pipes" width="100%" height="100%">
+			<s:Button x="10" y="10" label="Test connections" click="{sendEvent(TEST_PIPES)}"/>
+		</s:NavigatorContent>		
+	</mx:ViewStack>
+	<DebugPanel:Logger  id="logger" x="0" width="100%" height="90%">
+	</DebugPanel:Logger>
+</s:TitleWindow>

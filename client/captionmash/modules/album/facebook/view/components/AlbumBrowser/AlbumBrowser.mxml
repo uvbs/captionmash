@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer 
+		 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" height="100%" 
+		 creationPolicy="all" 
+		 xmlns:FriendsList="com.captionmashup.common.view.component.FriendsList.*" 
+		 xmlns:ThumbnailTileList="com.captionmashup.common.view.component.ThumbnailTileList.*"
+		 >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:HorizontalLayout/>
+	</s:layout>
+	
+	<FriendsList:FriendsList id="friendsList" width="25%" maxWidth="180">
+	</FriendsList:FriendsList>
+	
+	<s:Group width="75%" height="100%">
+		<ThumbnailTileList:ThumbnailTileList id="albums" width="100%" height="100%">
+		</ThumbnailTileList:ThumbnailTileList>
+		
+		<ThumbnailTileList:ThumbnailTileList id="photos" visible="false" width="100%" height="100%">
+		</ThumbnailTileList:ThumbnailTileList>
+	</s:Group>
+
+	
+	
+</s:BorderContainer>

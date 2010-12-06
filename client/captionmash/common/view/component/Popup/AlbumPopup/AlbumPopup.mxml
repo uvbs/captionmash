@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="600" height="450" 
+		 xmlns:Container="com.captionmashup.common.view.component.CaptionCanvas.Container.*"  
+		 xmlns:Albums="com.captionmashup.modules.album.facebook.view.components.AlbumBrowser.Albums.*" xmlns:AlbumPopup="com.captionmashup.common.view.component.Popup.AlbumPopup.*" 
+		 >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			[Bindable]public var imagePath:String = "";
+			public static const SELECT_ALBUM:String = 'select_album';
+			public static const DESELECT:String = 'deselect';
+
+		]]>
+	</fx:Script>
+	
+	<Container:ImageContainer id="imageContainer" imagePath="{imagePath}">	
+	</Container:ImageContainer>
+	
+	<AlbumPopup:AlbumPopupOverlay id="popupOverlay">
+	</AlbumPopup:AlbumPopupOverlay>
+
+</s:Group>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 verticalAlign="middle"
+		 horizontalAlign="center"
+		 >
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			[Bindable]public var text:String = "";
+			
+			public static const SEARCH_START:String = "SEARCH_START";
+			public static const SEARCHBOX_CLICK:String = "SEARCHBOX_CLICK";
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{				
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:TextInput id="textInput" 
+				 text="{text}" 
+				 change="sendEvent(SEARCH_START)" 
+				 click="sendEvent(SEARCHBOX_CLICK)"
+				 />
+	
+</s:VGroup>

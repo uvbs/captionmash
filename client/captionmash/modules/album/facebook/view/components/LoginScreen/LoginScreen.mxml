@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public static const TRY_LOGIN:String = "TRY_LOGIN";
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:Button label="LOGIN TO FACEBOOK" 
+			  id="loginButton" 
+			  fontSize="30" width="400" 
+			  height="80" 
+			  click="{sendEvent(TRY_LOGIN)}"/>
+</s:Panel>

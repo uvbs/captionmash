@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="200"
+		 height="500"
+		 horizontalAlign="center" paddingTop="50"
+		 verticalAlign="middle">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.captionmashup.common.CommonConstants;
+			
+			public static const NAME:String		= "EmptyScreen";
+			public static const ADD_FROM_BASKET:String	= NAME+"/add_from_basket";
+			public static const ADD_FROM_ALBUMS:String	= NAME+"/add_from_albums";
+			public static const UPLOAD_FILE:String		= NAME+"/upload_file";
+			
+			private function sendEvent(eventName:String):void
+			{
+				trace("event from EmptyScreen: "+eventName);
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:Label text="No images selected" fontSize="26" />
+	<s:HGroup>
+		<s:Button label="Open basket" 
+				  click="sendEvent(EmptyScreen.ADD_FROM_BASKET)"
+				  cornerRadius="10">
+		</s:Button>
+		
+		<s:Button label="Go to Albums" 
+				  click="sendEvent(EmptyScreen.ADD_FROM_ALBUMS)"
+				  cornerRadius="10">
+		</s:Button>	
+	</s:HGroup>
+</s:VGroup>

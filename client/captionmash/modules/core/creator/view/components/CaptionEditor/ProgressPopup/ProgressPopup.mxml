@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" width="250" height="150" 
+				   xmlns:spinner="effects.spinner.*"
+				   cornerRadius="20"
+				   dropShadowVisible="true">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	<spinner:ProgressSpinner id="spinner" size="50" numTicks="15">
+	</spinner:ProgressSpinner>
+	<s:Label text="Loading Image Data" fontSize="15">
+	</s:Label>
+</s:BorderContainer>

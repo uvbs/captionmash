@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%"
+		 height="100%"
+		 >
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.captionmashup.common.CommonConstants;
+			import com.captionmashup.common.log.t;
+			
+			public function set imageData(data:BitmapData):void{
+				if(data == null){
+					image.source = null;
+					return;
+				}
+				
+				var maxWidth:int;
+				var maxHeight:int;
+				//Scale Down
+				if(data.height < CommonConstants.CAPTION_CANVAS_HEIGHT_SCALE_LIMIT){
+					maxWidth  = imageFrame.width;
+					maxHeight = imageFrame.height;
+				}else{
+					maxWidth  = imageFrame.width;
+					maxHeight = data.height;
+				}
+				//trace("maxwidth: "+imageFrame.width);
+				//trace("maxheight: "+imageFrame.height);
+				//t.obj(data,"bitmapData set");
+				
+				var ratio:Number = Math.min( maxWidth/data.width, 
+												maxHeight/data.height);
+				
+				//trace("Ratio is: "+ratio);
+				
+				ratio = ratio > 1 ? 1 : ratio;
+				
+				image.maxWidth 	= ratio * data.width;
+				image.maxHeight = ratio * data.height;
+				
+				image.source = data;
+			}
+		]]>
+	</fx:Script>
+
+		<s:VGroup  id="imageFrame"
+				   horizontalAlign="center" 
+				   verticalAlign="middle" 
+				   height="100%" width="100%">
+			<s:BitmapImage id="image">
+			</s:BitmapImage>
+		</s:VGroup>
+</s:Group>

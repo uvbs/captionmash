@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" 
+		   width="100%"
+		   height="100%"
+		   creationComplete="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:DropShadowFilter id="shadow" distance="5" alpha="0.5">
+			
+		</mx:DropShadowFilter>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			private function init():void{
+				callLater(adjustRect);
+			}
+					
+			public function adjustRect():void{
+				var rect:Rectangle = new Rectangle(0, 0, this.width, this.height);
+				this.scrollRect = rect;
+			}	
+			
+			/********************************
+			 * CAPTION DELETION METHODS
+			 * ******************************/
+			public function clearCanvas():void{
+				for (;this.numChildren > 0;) {
+					this.removeChildAt(0);
+				}
+			}
+
+		]]>
+	</fx:Script>
+</mx:Canvas>

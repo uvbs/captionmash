@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 height="100%" width="100%" 
+		 xmlns:spinner="effects.spinner.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="logged_out" />
+		<s:State name="retrieving_user" />
+		<s:State name="logged_in" />
+	</s:states>
+	
+    <fx:Script>
+		<![CDATA[
+			
+			public static const NAME:String = "LoginBar";
+			
+			public static const LOGIN:String	= NAME+"login"
+			public static const REGISTER_ACCOUNT:String	= NAME+"register_account"
+			public static const LOGOUT:String	= NAME+"logout"
+			
+			//State Constants
+			public static const LOGGED_IN_STATE:String = "logged_in";
+			public static const LOGGED_OUT_STATE:String = "logged_out";
+			public static const RETRIEVING_USER_STATE:String = "retrieving_user";
+			
+			private function sendEvent(eventName:String):void{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>	
+	
+	<s:HGroup includeIn="logged_out" height="100%" width="100%" 
+			  verticalAlign="middle" horizontalAlign="right" paddingRight="30">
+		<s:Button label="Login" 
+				  height="100%" fontSize="20" 
+				  click="{sendEvent(LOGIN)}" cornerRadius="10">
+		</s:Button>
+		<s:Button label="Register" 
+				  height="100%" fontSize="20" 
+				  click="{sendEvent(REGISTER_ACCOUNT)}" cornerRadius="10">
+		</s:Button>	
+	</s:HGroup>
+	
+	<s:HGroup includeIn="logged_in" height="100%" width="100%" 
+				verticalAlign="middle" horizontalAlign="right" 
+				paddingRight="30" itemCreationPolicy="immediate">
+
+		<s:Label id="username" text="" fontSize="20" >
+		</s:Label>
+		<s:Button label="Logout" 
+				  height="100%" fontSize="20" 
+				  click="{sendEvent(LOGOUT)}" cornerRadius="10">
+		</s:Button>
+	</s:HGroup>
+
+
+	
+	<s:HGroup includeIn="retrieving_user" height="100%" width="100%" 
+			  verticalAlign="middle" horizontalAlign="right" paddingRight="30">
+		<s:Label text="Retrieving user" fontSize="20">
+		</s:Label>
+		<spinner:ProgressSpinner id="spinner" >		
+		</spinner:ProgressSpinner>
+	</s:HGroup>
+	
+	
+</s:Group>

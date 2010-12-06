@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:mx="library://ns.adobe.com/flex/mx"
+			 width="100%" height="30"
+			 verticalAlign="middle"
+			 paddingLeft="20">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+
+	
+	<fx:Script>
+		<![CDATA[
+			public static const NAME:String = "AppControlBar";
+			
+			public static const CAPTIONS:String = NAME+"/captions";
+			public static const IMAGES:String 	= NAME+"/images";
+			public static const CREATE:String	= NAME+"/create";
+			public static const DEBUG:String	= NAME+"/debug";
+			
+			private function sendEvent(eventName:String):void{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	
+	<s:HGroup height="100%" width="60%" horizontalAlign="left" verticalAlign="middle">
+		<s:Button label="Captions" height="100%" 
+				  fontSize="20" width="120" 
+				  click="{sendEvent(CAPTIONS)}" cornerRadius="10">
+		</s:Button>
+		<s:Button label="Images" height="100%" 
+				  fontSize="20" width="120" 
+				  click="{sendEvent(IMAGES)}" cornerRadius="10">
+		</s:Button>
+		<s:Button label="Create" height="100%" 
+				  fontSize="20" width="120" 
+				  click="{sendEvent(CREATE)}" cornerRadius="10">
+		</s:Button>	
+		<s:Button id="debugButton" label="Debug" height="100%" 
+				  fontSize="20" width="120" 
+				  click="{sendEvent(DEBUG)}" cornerRadius="10" visible="false">
+		</s:Button>	
+	</s:HGroup>
+	
+	<s:Group height="100%" width="40%" id="loginBarContainer">
+		
+	</s:Group>
+	
+
+	
+	
+</s:HGroup>

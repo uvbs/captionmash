@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" height="100%"
+		 xmlns:FrameSelector="com.captionmashup.common.view.component.FrameSelector.*"
+		 >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Metadata>
+		[ResourceBundle("CaptionViewer")]
+	</fx:Metadata> 
+	
+	<fx:Script>
+		<![CDATA[
+			
+			public static const CREATE_CAPTION:String    = 'create_caption';
+			public static const ADD_TO_BASKET:String     = 'add_to_basket';
+			public static const SHOW_PERMALINK:String    = 'show_permalink';
+
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				trace("event from viewOverlay: "+eventName);
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup width="100%" height="100%">
+		<s:HGroup horizontalAlign="center" verticalAlign="middle" 
+				  width="30%" height="100%">
+			<mx:LinkButton label="{resourceManager.getString('CaptionViewer','BottomDeck.ADD_TO_BASKET')}" 
+					  width="120" height="30" fontSize="12" color="#5A5A5A"
+					  click="sendEvent(BottomDeck.ADD_TO_BASKET)"/>
+			<mx:LinkButton label="{resourceManager.getString('CaptionViewer','BottomDeck.ADD_CAPTION')}" 
+					  width="120" height="30" fontSize="12" color="#5A5A5A"
+					  click="sendEvent(BottomDeck.CREATE_CAPTION)"/>
+		</s:HGroup>
+
+		<s:HGroup horizontalAlign="center" verticalAlign="middle" 
+				  width="40%" height="100%">
+
+			<mx:Button label="{resourceManager.getString('CaptionViewer','BottomDeck.FRAMES')}" 
+						  width="80" height="30" fontSize="12"
+					 	  id="dockedPanel" alpha="0.5" cornerRadius="10">
+			</mx:Button>
+
+		</s:HGroup>
+		
+		<s:HGroup width="30%" height="100%" horizontalAlign="right" 
+				  verticalAlign="middle" paddingRight="30">
+			<mx:LinkButton label="permalink" fontSize="12" color="#5A5A5A" click="sendEvent(SHOW_PERMALINK)">
+			</mx:LinkButton>
+			<mx:LinkButton id="authorName" fontSize="12" color="#5A5A5A">
+			</mx:LinkButton>
+		</s:HGroup>
+	</s:HGroup>
+
+	
+	<s:HGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" >
+		<FrameSelector:FrameSelector id="frameSelector" visible="false">
+		</FrameSelector:FrameSelector>
+	</s:HGroup>
+	
+</s:Group>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="400" height="100"
+		 >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public static const NEXT:String    = 'next';
+			public static const PREV:String = 'prev';
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup x="10" y="10" width="400" height="80" verticalAlign="middle">
+		<s:Button label="&lt;" width="42" fontSize="20" 
+				  height="35" click="sendEvent(PREV);"
+				  cornerRadius="10"/>
+		<s:List id="list" 
+				width="300">
+			<s:layout>
+				<s:HorizontalLayout gap="5"/>
+			</s:layout>	
+
+		</s:List>
+		<s:Button label="&gt;" width="42" fontSize="20" 
+				  height="35" click="sendEvent(NEXT);"
+				  cornerRadius="10"/>
+	</s:HGroup>
+</s:Group>

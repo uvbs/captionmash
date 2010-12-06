@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" 
+				   width="100%" height="100%" 
+				   xmlns:AlbumMenu="com.captionmashup.shell.view.components.AlbumMenu.*" 
+				   xmlns:SparkThumbnailTileList="com.captionmashup.common.view.component.SparkThumbnailTileList.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout>
+		</s:VerticalLayout>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			public static const NAME:String = "menu_home";
+			public static const LATEST_CAPTIONED_PHOTOS:String	= NAME+"latest_captioned_photos";
+			public static const LATEST_ADDED_PHOTOS:String		= NAME+"latest_added_photos";
+			
+			public static const FACEBOOK:String			= NAME+"facebook";
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{				
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup verticalAlign="middle" horizontalAlign="left" 
+			  width="100%" height="10%" gap="10" paddingLeft="10">
+		<s:Button label="Latest captioned" click="{sendEvent(LATEST_CAPTIONED_PHOTOS)}" 
+				  width="150" height="50" cornerRadius="10"/>
+		<s:Button label="Latest added" click="{sendEvent(LATEST_ADDED_PHOTOS)}" 
+				  width="150" height="50" cornerRadius="10"/>
+		<s:Button label="Facebook" click="{sendEvent(FACEBOOK)}" 
+				  visible="false" cornerRadius="10"/>
+	</s:HGroup>
+	<s:VGroup horizontalAlign="center" verticalAlign="middle" 
+			  width="100%" height="90%">
+		<SparkThumbnailTileList:SparkThumbnailTileList id="photos" height="100%" width="100%">
+		</SparkThumbnailTileList:SparkThumbnailTileList>
+	</s:VGroup>
+	
+</s:BorderContainer>

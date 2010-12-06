@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:mx="library://ns.adobe.com/flex/mx" 
+			 width="300" height="200" 
+			 creationPolicy="all"
+			 close="{sendEvent(BasketContainer.CLOSE_BASKET)}" 
+			 xmlns:SparkThumbnailTileList="com.captionmashup.common.view.component.SparkThumbnailTileList.*" 
+			 xmlns:BasketContainer="com.captionmashup.modules.core.basket.view.components.BasketContainer.*"
+		  	 cornerRadius="20"
+			 title="Basket">
+	
+	<s:states>
+		<s:State name="empty"/>
+		<s:State name="normal"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			public static const NORMAL_STATE:String = "normal";
+			public static const EMPTY_STATE:String	= "empty";
+			public static const CLOSE_BASKET:String = "close_basket";
+			
+			private function sendEvent(eventName:String):void{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	<BasketContainer:EmptyScreen id="emptyScreen" includeIn="empty" itemCreationPolicy="immediate">
+	</BasketContainer:EmptyScreen>
+	<SparkThumbnailTileList:SparkThumbnailTileList id="photoBasket" includeIn="normal" itemCreationPolicy="immediate">
+	</SparkThumbnailTileList:SparkThumbnailTileList>
+</s:TitleWindow>

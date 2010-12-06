@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="400" height="300" 
+		 title="Login Panel"
+		 close="{sendEvent(CANCEL)}"
+		 cornerRadius="20">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import spark.skins.spark.TextInputSkin;
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import spark.skins.spark.TextAreaSkin;
+			
+			public static const NAME:String = "LoginForm";
+			
+			public static const SUBMIT:String 	 =NAME+ "submit";
+			public static const CANCEL:String 	 =NAME+ "cancel";
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+		]]>
+	</fx:Script>
+	
+	<s:VGroup height="100%" width="100%" verticalAlign="middle" horizontalAlign="center">
+		<mx:Form id="form">
+			<mx:FormItem label="EMAIL">
+				<s:TextInput id="emailInput">
+				</s:TextInput>
+			</mx:FormItem>
+			
+			<mx:FormItem label="PASSWORD">
+				<s:TextInput id="passwordInput"
+							 displayAsPassword="true">
+				</s:TextInput>
+			</mx:FormItem>
+		</mx:Form>	
+		
+		<s:HGroup width="100%" horizontalAlign="center" paddingRight="20">
+			<s:Button label="Submit" click="sendEvent(SUBMIT)"/>
+			<s:Button label="Cancel" click="sendEvent(CANCEL)"/>
+		</s:HGroup>
+
+	</s:VGroup>
+	
+</s:TitleWindow>

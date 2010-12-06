@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 horizontalAlign="center" verticalAlign="middle" initialize="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.captionmashup.common.model.local.paginator.Paginator;
+			import com.captionmashup.common.model.local.paginator.PaginatorData;
+			
+			public static const NEXT:String    = 'next';
+			public static const PREV:String = 'prev';
+			
+			[Bindable]public var currentPage:int = 0;
+			[Bindable]public var maxPages:int = 0;
+			
+			private function init():void{
+				reset();
+			}
+			
+			private function reset():void{
+				currentPage = 0; 
+				maxPages 	= 0; 
+				prev.enabled = false;
+				next.enabled = false;
+			}
+			
+			// Sends the named event
+			private function sendEvent(eventName:String):void
+			{
+				dispatchEvent(new Event(eventName, true));
+			}
+			
+			public function setStatus(paginatorData:PaginatorData):void{
+				
+				if(paginatorData.status == Paginator.EMPTY){
+					reset();
+					return;
+				}
+				
+				/******************************************
+				 * Display current page and max pages
+				 * ****************************************/
+				currentPage = paginatorData.page_no; 
+				maxPages = paginatorData.max_pages; 
+				
+				
+				/********************************************
+				 * Enable or Disable PREV & NEXT buttons
+				 * ******************************************/
+				if(paginatorData.max_pages == 1 || paginatorData.max_pages == 0){
+					prev.enabled = false;
+					next.enabled = false;
+				}else{
+					switch(paginatorData.status)
+					{
+						case Paginator.AT_START:
+							prev.enabled = false;
+							next.enabled = true;
+							break;
+						
+						case Paginator.AT_MIDDLE:
+							prev.enabled = true;
+							next.enabled = true;
+							break;
+						
+						case Paginator.AT_END:
+							prev.enabled = true;
+							next.enabled = false;
+							break;
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:Button label="&lt;" id="prev" fontSize="15" click="sendEvent(PREV);" width="50" cornerRadius="10"/>
+	<mx:Spacer/>
+	<mx:Label text="{currentPage+' / '+maxPages}" id="pageDisplay" fontSize="15"/>
+	<mx:Spacer/>
+	<mx:Button label="&gt;" id="next" fontSize="15" click="sendEvent(NEXT);" width="50" cornerRadius="10"/>
+</mx:HBox>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="300" height="150"
+			   title="ALBUM CREATION">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			public static const CANCEL_ALBUM_CREATE:String	 = "cancel_album_create";
+			public static const SUBMIT_ALBUM_NAME:String	 = "submit_album_name";
+			
+			public function sendEvent(name:String):void{
+				dispatchEvent(new Event(name,true));
+			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle">
+		</s:VerticalLayout>
+	</s:layout>
+	<s:Label text="ENTER ALBUM NAME">
+	</s:Label>
+	<s:TextInput id="albumNameInput">
+	</s:TextInput>
+	<s:HGroup>
+		<s:Button label="OKAY" click="{sendEvent(SUBMIT_ALBUM_NAME)}">
+		</s:Button>
+		<s:Button label="CANCEL" click="{sendEvent(CANCEL_ALBUM_CREATE)}">
+		</s:Button>
+	</s:HGroup>
+</s:TitleWindow>

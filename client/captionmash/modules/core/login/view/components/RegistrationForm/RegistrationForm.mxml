@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="400" height="300"
+		 close="{sendEvent(CANCEL)}" 
+		 xmlns:CheckCross="com.captionmashup.common.view.component.CheckCross.*"
+		 cornerRadius="20"
+		 title="New User">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left"/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:EmailValidator id="emailValidator" 
+						   property="text" 
+						   source="{emailInput}" 
+						   triggerEvent="{EMAIL_TYPE}"
+						   valid="sendEvent(EMAIL_VALID)"
+						   invalid="sendEvent(EMAIL_INVALID)"
+						   required="true"
+						   missingAtSignError="There is no @ sign"
+						   >
+		</mx:EmailValidator>
+		<mx:RegExpValidator id="passwordValidator"
+							property="text"
+							source="{passwordInput}"
+							flags="g"
+							expression="{passwordRegex}"
+							triggerEvent="{PASSWORD_TYPE}"
+							valid="sendEvent(PASSWORD_VALID)"
+							invalid="sendEvent(PASSWORD_INVALID)"
+							noMatchError="At least 1 letter, alphanumerical characters"
+							>
+		</mx:RegExpValidator>
+		
+		
+		<mx:RegExpValidator id="nicknameValidator"
+							property="text"
+							source="{nicknameInput}"
+							flags="g"
+							expression="{nicknameRegex.toString()}"
+							triggerEvent="{NICKNAME_TYPE}"
+							valid="sendEvent(NICKNAME_VALID)"
+							invalid="sendEvent(NICKNAME_INVALID)"
+							noMatchError="Nickname must be between 3 - 20 characters">	
+		</mx:RegExpValidator>
+		
+	
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[			
+			
+			[Bindable]public var passwordRegex:String = "^(?=^.{6,}$)((?=.*[A-Za-z0-9])(?=.*[A-Za-z])(?!.*[^\\w]))^.*$";
+			[Bindable]public var nicknameRegex:String = "^(?=^.{3,20}$)((?=.*[A-Za-z0-9])(?=.*[A-Za-z])(?!.*[^\\w]))^.*$";
+			
+			public static const SUBMIT:String 	= "submit";
+			public static const CANCEL:String 	= "cancel";
+			
+			
+			public static const PASSWORD_ACTIVE:String			= "password_active";
+			
+			public static const NICKNAME_TYPE:String			= "nickname_type";
+			public static const NICKNAME_VALID:String			= "nickname_valid";
+			public static const NICKNAME_INVALID:String			= "nickname_invalid";
+			
+			public static const EMAIL_TYPE:String				= "email_type";
+			public static const EMAIL_VALID:String				= "email_valid";
+			public static const EMAIL_INVALID:String			= "email_invalid";
+			
+			public static const PASSWORD_TYPE:String			= "password_type";
+			public static const PASSWORD_VERIFY_TYPE:String		= "password_verify_type";
+			public static const PASSWORD_VALID:String			= "password_valid";
+			public static const PASSWORD_INVALID:String			= "password_invalid";
+			
+			public static const EMAIL_ACTIVE:String				= "email_active";
+			public static const EMAIL_VERIFY_TYPE:String		= "email_verify_type";
+			
+			private function sendEvent(eventName:String):void{
+				dispatchEvent(new Event(eventName, true));
+			}
+			
+			public function clear():void{
+				
+				emailInput.text = "";
+				passwordInput.text = "";
+				passwordVerifyInput.text = "";
+				nicknameInput.text = "";
+				emailCheckCross.valid = false;
+				emailCheckCross.visible = false;
+				nicknameCheckCross.valid = false;
+				nicknameCheckCross.visible = false;
+				submitButton.enabled = false;
+			}
+			
+			/*
+			
+			<mx:FormItem width="449">
+			<s:TextInput id="regex" text="ABC\d" width="296">
+			
+			</s:TextInput>
+			</mx:FormItem>
+			*/
+		]]>
+	</fx:Script>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace controls "controls.*";
+		@namespace spinner "effects.spinner.*";
+		@namespace CheckCross "com.captionmashup.common.view.component.CheckCross.*";
+		
+	</fx:Style>
+	<mx:Form id="form" width="100%">
+		<mx:FormHeading label= "Please fill the fields">
+		</mx:FormHeading>
+			<mx:FormItem label="EMAIL" toolTip="Please suppy a valid e-mail">
+				<s:HGroup verticalAlign="middle">
+					<s:TextInput id="emailInput" 
+								 change="sendEvent(EMAIL_TYPE)">
+					</s:TextInput>
+					<CheckCross:CheckCross id="emailCheckCross" 
+										   width="20" height="20"
+										   visible="false">
+					</CheckCross:CheckCross>
+				</s:HGroup>
+
+			</mx:FormItem>
+		
+		
+		<mx:FormItem label="PASSWORD" toolTip="Password should contain at least 1 letter and must be at least 6 characters">
+			<s:TextInput id="passwordInput"  
+						change="sendEvent(PASSWORD_TYPE)"
+						displayAsPassword="true">
+			</s:TextInput>
+		</mx:FormItem>
+		<mx:FormItem label="VERIFY PASSWORD" visible="false" id="passwordVerifyContainer">
+			<s:TextInput id="passwordVerifyInput" 
+						 change="sendEvent(PASSWORD_VERIFY_TYPE)"
+						 displayAsPassword="true">	
+			</s:TextInput>
+		</mx:FormItem>
+		
+		<mx:FormItem label="NICKNAME" toolTip="Choose a unique nickname">
+			<s:HGroup verticalAlign="middle">
+				<s:TextInput id="nicknameInput" 
+							 change="sendEvent(NICKNAME_TYPE)">
+				</s:TextInput>
+				<CheckCross:CheckCross id="nicknameCheckCross" 
+									   width="20" height="20"
+									   visible="false">
+				</CheckCross:CheckCross>
+			</s:HGroup>
+		</mx:FormItem>
+	</mx:Form>
+
+	
+	<s:HGroup width="100%" horizontalAlign="center" paddingRight="20">
+		<s:Button label="Submit" enabled="false" id="submitButton" click="sendEvent(SUBMIT)"/>
+		<s:Button label="Cancel" id="cancelButton" click="sendEvent(CANCEL)"/>
+	</s:HGroup>
+
+</s:TitleWindow>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow 
+		 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="700" height="500"
+		 title="IMAGE MANAGEMENT" 
+		 xmlns:Container="com.captionmashup.common.view.component.CaptionCanvas.Container.*"  
+		 xmlns:ns="com.captionmashup.modules.core.album_manager.view.components.popup.photo.PhotoManagerPopup.*" 
+		 creationPolicy="all"
+		 close="sendEvent(CLOSE)">
+		
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			[Bindable]public var imagePath:String = "";
+			
+			public static const NAME:String = "PhotoManagerPopup";
+			public static const CLOSE:String = NAME+"/close";
+			
+			private function sendEvent(type:String):void{
+				dispatchEvent(new Event(type,true));
+			}
+			
+			public function set photoTitle(value:String):void{
+				propertiesTab.titleInput.text = value;
+			}
+			
+			public function set pageNo(value:int):void{
+				propertiesTab.pageLabel.text = value.toString();
+			}
+			
+			public function set sourceUrl(value:String):void{
+				propertiesTab.source.text = value;
+				//propertiesTab.source.text = value;
+				//propertiesTab.source.appendText(value);
+			}
+			
+			public function set fileSize(value:int):void{
+				
+				//Format kb display
+				var kb:int = Math.round(value / 1000);
+				
+				propertiesTab.size.text = kb+" KB";
+			}
+			
+			
+			public function get photoTitle():String{
+				return propertiesTab.titleInput.text;
+			}
+			
+			public function get pageNo():int{
+				return int(propertiesTab.pageLabel.text);
+			}
+			
+			public function get sourceUrl():String{
+				return propertiesTab.source.text;
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<s:HGroup height="80%" width="100%" paddingLeft="5" paddingRight="5" paddingTop="5">
+		
+		<s:BorderContainer height="100%" width="50%">
+			<Container:ImageContainer id="imageContainer" imagePath="{imagePath}">	
+			</Container:ImageContainer>	
+		</s:BorderContainer>
+		<ns:PhotoManagerProperties id="propertiesTab" width="50%">
+		</ns:PhotoManagerProperties>
+	</s:HGroup>
+	<ns:PhotoManagerActionTab id="actionTab" height="20%">
+	</ns:PhotoManagerActionTab>
+
+	
+</s:TitleWindow >

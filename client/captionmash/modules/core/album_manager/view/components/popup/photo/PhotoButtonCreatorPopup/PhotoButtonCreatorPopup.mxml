@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="400" height="300"
+		 title="Get button code for the image">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" paddingTop="10" paddingBottom="5">
+		</s:VerticalLayout>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.captionmashup.common.CommonConstants;
+			
+			public var image_source:String = ""
+			
+			public static const NAME:String = "PhotoButtonCreatorPopup";
+			public static const IMAGE_CLICK:String = NAME+"/image_click";
+			public static const CLOSE:String	= NAME+"/close";
+			
+			private function sendEvent(type:String):void{
+				dispatchEvent(new Event(type,true));
+			}
+			
+			private function onImageClick(src:String):void{
+				trace("Image clicked at PhotoButtonCreatorPopup: "+src);
+				
+				//textArea.text = "";
+				
+				image_source 	= src;
+				//textArea.text 	= src;
+				
+				sendEvent(IMAGE_CLICK);
+			}
+			
+			private function onClose():void{
+				image_source = "";
+				textArea.text = "";
+				sendEvent(CLOSE);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Label text="1- Select button size:" fontSize="15" width="90%">		
+	</s:Label>
+	
+	<s:HGroup height="30%" width="100%" verticalAlign="middle" 
+			  horizontalAlign="center" gap="20">
+		
+		<mx:Image id="small"
+				  source="{CommonConstants.HOMEPAGE+'/button/awesome_button_small.png'}"
+				  buttonMode="true"
+				  toolTip="30 px" 
+				  click="onImageClick(small.source.toString())">
+		</mx:Image>
+		<mx:Image id="medium"
+				  source="{CommonConstants.HOMEPAGE+'/button/awesome_button_medium.png'}"
+				  buttonMode="true"
+				  toolTip="45 px"
+				  click="onImageClick(medium.source.toString())">
+		</mx:Image>
+		<mx:Image id="large"
+				  source="{CommonConstants.HOMEPAGE+'/button/awesome_button_large.png'}"
+				  buttonMode="true"
+				  toolTip="60 px"
+				  click="onImageClick(large.source.toString())">
+		</mx:Image>
+	</s:HGroup>
+	
+	<s:Label fontSize="15" text="2- Add the HTML to your webpage" width="90%">	
+	</s:Label>
+	
+	<s:TextArea id="textArea" width="90%" borderVisible="true" height="100">
+	</s:TextArea>
+	
+
+	
+	<s:Button label="Close" click="onClose();" width="90" height="30" fontSize="15">
+	</s:Button>
+	
+	
+</s:Panel>

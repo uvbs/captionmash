@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" 
+		  width="100%" height="100%"
+		  xmlns:CheckCross="com.captionmashup.common.view.component.CheckCross.*"
+		  creationPolicy="all">
+	
+	<s:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="left">
+		</s:VerticalLayout>
+	</s:layout>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[		
+			public static const NAME:String = "PhotoManagerProperties";
+			public static const SAVE:String = NAME+"/save";
+			
+			private function sendEvent(type:String):void{
+				dispatchEvent(new Event(type,true));
+			}
+
+		]]>
+	</fx:Script>
+	
+	<mx:Form borderVisible="false" dropShadowVisible="false" width="100%">
+		<mx:FormHeading label= "Image Properties" fontSize="20">
+		</mx:FormHeading>
+		<mx:FormItem label="Title" width="100%" required="false"
+					 toolTip="Title to be displayed below image" fontSize="15">
+			<s:TextInput id="titleInput" width="90%" fontSize="15" text="">
+			</s:TextInput>
+		</mx:FormItem>
+		<mx:FormItem label="Page number" width="100%" direction="horizontal" required="false"
+					 toolTip="Used to order images while displaying an album, leave 0 for no order" 
+					 fontSize="15">
+			<s:Label id="pageLabel" width="30" fontSize="15" text="{spinner.value}" paddingTop="5" >
+			</s:Label>
+			<s:Spinner id="spinner"
+					   minimum="0" maximum="100"
+					   stepSize="1"
+					   allowValueWrap="true">
+			</s:Spinner>
+		</mx:FormItem>
+		<mx:FormItem label="Source" width="100%" required="false"
+					 toolTip="Source URL of the image" fontSize="15">
+			<s:TextInput id="source" width="90%" fontSize="15" text="">
+			</s:TextInput>
+		</mx:FormItem>
+		<mx:FormItem label="Image size" width="100%"
+					 toolTip="Size of the image" fontSize="15" >
+			<s:Label id="size" text="">
+			</s:Label>
+		</mx:FormItem>
+	</mx:Form>
+	<s:HGroup horizontalAlign="center" width="100%">
+		<s:Button label="SAVE" width="100" height="50" fontSize="20" id="saveButton" click="sendEvent(SAVE)">
+		</s:Button>
+		<CheckCross:CheckCross id="checkCross" visible="false"
+							   width="50" height="50">
+		</CheckCross:CheckCross>
+	</s:HGroup>
+	
+</s:BorderContainer>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" 
+		  width="100"
+		  verticalAlign="top" horizontalAlign="center"
+		  paddingTop="15">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:states>
+		<s:State name="no_select" />
+		<s:State name="album_selected" />
+		<s:State name="photo_selected" />
+		<s:State name="both_selected" />
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			public static const NAME:String = "AlbumControlSideBar";
+			
+			public static const CREATE_ALBUM:String	= NAME+"/create_album";
+			public static const DELETE_ALBUM:String	= NAME+"/delete_album";
+			public static const UPLOAD_PHOTO:String = NAME+"/upload_photo";
+			public static const DELETE_PHOTO:String = NAME+"/delete_photo";
+			
+			public static const NO_SELECT_STATE:String 		= "no_select";
+			public static const ALBUM_SELECTED_STATE:String = "album_selected";
+			public static const PHOTO_SELECTED_STATE:String = "photo_selected";
+			public static const BOTH_SELECTED_STATE:String 	= "both_selected";
+			
+			public function sendEvent(name:String):void{
+				dispatchEvent(new Event(name,true));
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Button id="createButton" label="CREATE ALBUM" width="90%" height="60" 
+			  click="{sendEvent(CREATE_ALBUM)}"/>
+	<s:Button id="deleteButton" label="DELETE ALBUM" width="90%" height="60" 
+			  click="{sendEvent(DELETE_ALBUM)}" 
+			  enabled.photo_selected="false"
+			  enabled.no_select="false"/>
+	
+	<s:Button id="uploadButton" label="UPLOAD" width="90%" height="60" 
+			  click="{sendEvent(UPLOAD_PHOTO)}"
+			  enabled.photo_selected="false"
+			  enabled.no_select="false"/>
+	
+	<s:Button id="photoDeleteButton" label="DELETE PHOTO" width="90%" height="60" 
+			  click="{sendEvent(DELETE_PHOTO)}"
+			  enabled.no_select="false"
+			  enabled.album_selected="false"/>
+	
+	
+	
+</s:VGroup>

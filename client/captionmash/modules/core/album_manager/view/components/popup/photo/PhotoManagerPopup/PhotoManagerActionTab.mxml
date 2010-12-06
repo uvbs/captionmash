@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" 
+		  width="100%" height="100%"
+		  horizontalAlign="center"
+		  verticalAlign="middle">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			public static const NAME:String = "ActionTab";
+			public static const ADD_TO_BASKET:String 	= NAME+"/add_to_basket";
+			public static const ADD_CAPTION:String 		= NAME+"/add_caption";
+			public static const CREATE_BUTTON:String 	= NAME+"/create_button";
+			
+			private function sendEvent(type:String):void{
+				dispatchEvent(new Event(type,true));
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Button label="BASKET" fontSize="20" width="25%" height="80%" click="sendEvent(ADD_TO_BASKET)">		
+	</s:Button>
+	<s:Button label="CAPTION" fontSize="20" width="25%" height="80%" click="sendEvent(ADD_CAPTION)">		
+	</s:Button>
+	<s:Button label="GET BUTTON" fontSize="20" width="25%" height="80%" click="sendEvent(CREATE_BUTTON)">		
+	</s:Button>
+</s:HGroup>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				width="100%" height="100%"
+				xmlns:Container="com.captionmashup.common.view.component.CaptionCanvas.Container.*"
+				>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center">
+		</s:VerticalLayout>
+	</s:layout>
+	<Container:ImageContainer id="imageContainer" imagePath="{data.thumb_path}">
+	</Container:ImageContainer>
+	<s:Label text="{data.name}" fontSize="15">
+	</s:Label>	
+	<!-- Data is GenreDTO-->
+		
+</s:ItemRenderer>
